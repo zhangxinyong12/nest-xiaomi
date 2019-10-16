@@ -1,10 +1,13 @@
-import { Controller, Get, Query, Request, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Query, Request, Post, Body, Param, Render, Response } from '@nestjs/common';
 
 @Controller('user')
 export class UserController {
     @Get()
+    @Render('default/user') // 渲染模版引擎
     index() {
-        return '用户中心';
+        return {
+            name: 'zhangsan'
+        };
     }
     // @Query 装饰器 获取url？后面的参数
     @Get('add')
@@ -18,8 +21,9 @@ export class UserController {
     }
     // @Body 获取传值
     @Post('create')
-    create(@Body() body) {
-        return body;
+    create(@Body() body, @Response() res) {
+        console.log(body);
+        res.redirect('/user');
     }
     // 动态路由
     @Get(":id")
