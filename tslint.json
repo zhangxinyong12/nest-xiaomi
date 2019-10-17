@@ -3,8 +3,11 @@
   "extends": [
     "tslint:recommended"
   ],
+  "rulesDirectory": [
+    "node_modules/codelyzer"
+  ],
   "jsRules": {
-    "no-unused-expression": true
+    "no-unused-expression": false
   },
   "rules": {
     "arrow-return-shorthand": true,
@@ -38,7 +41,7 @@
     "member-access": false,
     "no-arg": true,
     "no-bitwise": true,
-    "no-console": true,
+    "no-console": false,
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-super": true,
@@ -144,6 +147,5 @@
         ]
       }
     ]
-  },
-  "rulesDirectory": []
+  }
 }
