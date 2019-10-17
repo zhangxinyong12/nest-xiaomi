@@ -44,3 +44,4 @@ Thumbs.db
 
 /node_modules_temp
 debug.log
+public/upload/

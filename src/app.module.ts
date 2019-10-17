@@ -5,10 +5,12 @@ import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { NewsService } from './news/news.service';
 import { NewsController } from './news/news.controller';
+import { UploadController } from './upload/upload.controller';
+import { SaveService } from './upload/save/save.service';
 
 @Module({
   imports: [],
-  controllers: [AppController, UserController, NewsController],
-  providers: [AppService, UserService, NewsService],
+  controllers: [AppController, UserController, NewsController, UploadController],
+  providers: [AppService, UserService, NewsService, SaveService],
 })
 export class AppModule {}
