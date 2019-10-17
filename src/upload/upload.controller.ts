@@ -21,17 +21,26 @@ export class UploadController {
     // 多文件上传
     @Post('userImg')
     // FilesInterceptor 字段一样的时候
-    @UseInterceptors(FilesInterceptor('face'))
+    // @UseInterceptors(FilesInterceptor('face'))
     // FileFieldsInterceptor 分别定义字段
-    // @UseInterceptors(FileFieldsInterceptor([
-    //     { name: 'face', maxCount: 3 }
-    // ]))
+    @UseInterceptors(FileFieldsInterceptor([
+        { name: 'face', maxCount: 3 },
+        { name: 'img', maxCount: 3 }
+    ]))
     userImg(@Body() body, @UploadedFiles() imgList) {
         console.log(body);
         console.log(imgList);
-        imgList.forEach(file => {
-            this.saveService.save(file);
-        });
+        // // @UseInterceptors(FilesInterceptor('face')) 字段一样的时候
+        // imgList.forEach(file => {
+        //     this.saveService.save(file);
+        // });
+        // 字段不一样
+        for (const files in imgList) {
+            imgList[files].forEach(file => {
+                this.saveService.save(file);
+            });
+        }
+
         return {
             success: true
         };
