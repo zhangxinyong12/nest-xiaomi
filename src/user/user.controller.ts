@@ -1,5 +1,5 @@
-import { Controller, Get, Query, Request, Post, Body, Param, Render, Response } from '@nestjs/common';
-
+import { Body, Controller, Get, Param, Post, Query, Render, Req, Res } from '@nestjs/common';
+import { Request, Response } from 'express';
 @Controller('user')
 export class UserController {
     @Get()
@@ -11,20 +11,24 @@ export class UserController {
     }
     // @Query 装饰器 获取url？后面的参数
     @Get('add')
-    addData(@Query() query) {
+    addData(@Req() query) {
         return query;
     }
     // @Request 获取完整的请求
     @Get('edit')
-    editData(@Request() req) {
+    editData(@Req() req: Request) {
         return req.query;
     }
     // @Body 获取传值
     @Post('create')
-    create(@Body() body, @Response() res) {
+    create(@Body() body, @Res() res: Response) {
         // tslint:disable-next-line: no-console
         console.log(body);
-        res.redirect('/user');
+        res.json({
+            name: 'xxx123',
+        });
+        res.status(200).end();
+        // res.redirect('/user');
     }
     // 动态路由
     @Get(':id')
