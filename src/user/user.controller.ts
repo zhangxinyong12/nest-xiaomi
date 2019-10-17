@@ -51,6 +51,7 @@ export class UserController {
     @Post('upload')
     @UseInterceptors(FileInterceptor('file'))
     uploadFile(@UploadedFile() file) { // 注意字段
+        console.log(file);
         return {
             fileList: file,
         };

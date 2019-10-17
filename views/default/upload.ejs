@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <form action="/user/upload" method="post">
+    <!-- enctype post 提交形式也就是 header里面的content-type -->
+    <form action="/user/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="file" id="file">
         <button type="submit">提交</button>
     </form>
