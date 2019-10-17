@@ -25,6 +25,7 @@
     "@nestjs/platform-express": "^6.7.2",
     "cookie-parser": "^1.4.4",
     "ejs": "^2.7.1",
+    "express-session": "^1.17.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3"

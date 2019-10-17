@@ -63,12 +63,33 @@ export class UserController {
         res.cookie('userId', '10086', { maxAge: 1000 * 60, httpOnly: true, signed: true });
         res.send('cookie 设置成功');
     }
-    //getCookie
+    // getCookie
     @Get('getCookie')
     getCookie(@Req() req: Request) {
         const cookie = req.signedCookies;
         return {
-            cookie
-        }
+            cookie,
+        };
+    }
+    @Get('delectCookie')
+    delectCookie(@Res() res: Response) {
+        res.cookie('userId', null, { maxAge: -1000 * 60, httpOnly: true, signed: true });
+        res.send('cookie 删除成功');
+    }
+    // session 
+    @Get('setSession')
+    setSession(@Req() req) {
+        req.session.userName = 'zhangsan';
+        return '设置成功';
+    }
+    @Get('getSession')
+    getSession(@Req() req) {
+        const session = req.session.userName;
+        return { session };
+    }
+    @Get('delectSession')
+    delectSession(@Req() req) {
+        req.session.destroy();
+        return 'session 删除成功';
     }
 }
