@@ -1,6 +1,16 @@
-import { Body, Controller, Get, Param, Post, Query, Render, Req, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { UserPipe } from './../pipe/user.pipe';
+import { NewsPipe } from './../pipe/news.pipe';
+import { Body, Controller, Get, Param, Post, Query, Render, Req, Res, UploadedFile, UseInterceptors, UsePipes } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Request, Response } from 'express';
+import * as Joi from '@hapi/joi';
+
+
+const userAdd = Joi.object().keys({
+    name: Joi.string().required(),
+    age: Joi.number().integer().min(6).max(66).required()
+});
+
 @Controller('user')
 export class UserController {
     @Get()
@@ -22,11 +32,12 @@ export class UserController {
     }
     // @Body 获取传值
     @Post('create')
+    @UsePipes(new UserPipe(userAdd))
     create(@Body() body, @Res() res: Response) {
         // tslint:disable-next-line: no-console
         console.log(body);
         res.json({
-            name: 'xxx123',
+            ...body
         });
         res.status(200).end();
         // res.redirect('/user');

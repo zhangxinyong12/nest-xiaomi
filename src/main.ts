@@ -29,8 +29,8 @@ async function bootstrap() {
     rolling: true // 每次重新设置cookie 过期时间
   }));
 
-  await app.listen(3000, () => {
-    console.log('3000 端口启动成功');
+  await app.listen(3306, () => {
+    console.log('3306 端口启动成功');
   });
 }
 bootstrap();
