@@ -10,6 +10,8 @@ import { NewsController } from './news/news.controller';
 import { UploadController } from './upload/upload.controller';
 import { SaveService } from './upload/save/save.service';
 import { LogController } from './log/log.controller';
+import { APP_GUARD } from '@nestjs/core';
+import { LoginGuard } from './guard/login.guard';
 
 @Module({
   imports: [],
@@ -21,6 +23,10 @@ import { LogController } from './log/log.controller';
     LogController,
   ],
   providers: [
+    {
+      provide: APP_GUARD,
+      useClass: LoginGuard
+    },
     AppService,
     UserService,
     NewsService,

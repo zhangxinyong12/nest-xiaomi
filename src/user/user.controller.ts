@@ -71,13 +71,14 @@ export class UserController {
     // setcookie
     @Get('setCookie')
     setCookie(@Res() res: Response) {
-        res.cookie('userId', '10086', { maxAge: 1000 * 60, httpOnly: true, signed: true });
+        res.cookie('userId', '10086', { maxAge: 1000 * 60 * 60, httpOnly: true, signed: true });
         res.send('cookie 设置成功');
     }
     // getCookie
     @Get('getCookie')
     getCookie(@Req() req: Request) {
         const cookie = req.signedCookies;
+
         return {
             cookie,
         };
